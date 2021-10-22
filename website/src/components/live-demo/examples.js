@@ -302,7 +302,7 @@ export const EXAMPLES = {
     {
       name: 'Resolvers Signature',
       description: `This example demonstrate how to generate a basic resolver signature, based on your GraphQL schema. With the default setup, you'll need to adjust your models types to the same structure of your GraphQL schema (see mappers example for more advanced usage).
-      
+
 [You can read more about using this plugin here](https://the-guild.dev/blog/better-type-safety-for-resolvers-with-graphql-codegen)`,
       tags: ['nodejs', 'backend'],
       config: `generates:
@@ -316,7 +316,7 @@ export const EXAMPLES = {
     {
       name: 'Resolvers Signature (with custom models)',
       description: `This example demonstrate how to generate resolvers signature, based on your GraphQL schema, with your model types (\`mappers\` configuration)
-      
+
 [You can read more about using this plugin here](https://the-guild.dev/blog/better-type-safety-for-resolvers-with-graphql-codegen)`,
       tags: ['nodejs', 'backend'],
       config: `generates:
@@ -379,7 +379,7 @@ export const EXAMPLES = {
     profile: Profile! @column
     chats: [Chat!]! @link
   }
-  
+
   type Profile @entity(embedded: true,
     additionalFields: [
       { path: "dateOfBirth", type: "string" }
@@ -387,13 +387,13 @@ export const EXAMPLES = {
     name: String! @column
     age: Int
   }
-  
+
   type Chat @entity {
     id: ID! @id
     users: [User!]! @link
     messages: [ChatMessage!]!
   }
-  
+
   type ChatMessage @entity {
     id: ID! @id
     chat: Chat! @link
@@ -539,6 +539,24 @@ export const EXAMPLES = {
       - fragment-matcher`,
       schema: TS_SCHEMA,
       documents: '',
+    },
+    {
+      name: 'Operations whitelist',
+      tags: ['nodejs', 'graphql', 'apollo', 'frontend', 'backend', 'security'],
+      config: `generates:
+  whitelist-client.json:
+    config:
+      output: client
+    plugins:
+      - operations-whitelist
+
+  whitelist-server.json:
+    config:
+      output: server
+    plugins:
+      - operations-whitelist`,
+      schema: TS_SCHEMA,
+      documents: TS_QUERY,
     },
   ],
 };

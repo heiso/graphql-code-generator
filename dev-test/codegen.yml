@@ -273,6 +273,20 @@ generates:
       - typescript
       - typescript-operations
       - typescript-jit-sdk
+  ./dev-test/githunt/whitelist-client.json:
+    schema: ./dev-test/githunt/schema.json
+    documents: ./dev-test/githunt/**/*.graphql
+    plugins:
+      - operations-whitelist
+    config:
+      output: 'client'
+  ./dev-test/githunt/whitelist-server.json:
+    schema: ./dev-test/githunt/schema.json
+    documents: ./dev-test/githunt/**/*.graphql
+    plugins:
+      - operations-whitelist
+    config:
+      output: 'server'
   ./dev-test/star-wars/types.ts:
     schema: ./dev-test/star-wars/schema.json
     documents: ./dev-test/star-wars/**/*.graphql

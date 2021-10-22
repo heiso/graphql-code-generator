@@ -38,4 +38,5 @@ export const pluginLoaderMap = {
   introspection: () => import('@graphql-codegen/introspection'),
   'schema-ast': () => import('@graphql-codegen/schema-ast'),
   'typescript-apollo-client-helpers': () => import('@graphql-codegen/typescript-apollo-client-helpers'),
+  'operations-whitelist': () => import('@graphql-codegen/operations-whitelist'),
 };

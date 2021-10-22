@@ -200,4 +200,9 @@ export const pluginsConfigurations: PluginConfig[] = [
     identifier: 'UrqlIntrospectionConfig',
     name: 'urql-introspection',
   },
+  {
+    file: '../../plugins/other/operations-whitelist/src/index.ts',
+    identifier: 'WhitelistPluginConfig',
+    name: 'operations-whitelist',
+  },
 ];

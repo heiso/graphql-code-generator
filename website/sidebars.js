@@ -84,6 +84,7 @@ module.exports = {
           'plugins/add',
           'plugins/time',
           'plugins/relay-operation-optimizer',
+          'plugins/operations-whitelist',
         ],
       },
     ],

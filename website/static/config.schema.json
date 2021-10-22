@@ -3424,6 +3424,20 @@
         }
       }
     },
+    "WhitelistPluginConfig": {
+      "type": "object",
+      "properties": {
+        "output": {
+          "description": "Define which type of file will be generated, hashes by name (client), or queries by hash (server)",
+          "enum": ["client", "server"],
+          "type": "string"
+        },
+        "generateTypenames": {
+          "description": "Include __typename on each selection (apollo client actually use it to handle cache)\nDefault value: \"true\"",
+          "type": "boolean"
+        }
+      }
+    },
     "ModulesConfig": {
       "type": "object",
       "properties": {
@@ -4443,6 +4457,25 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "plugins": {
+                "contains": {
+                  "type": "string",
+                  "const": "operations-whitelist"
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$ref": "#/definitions/WhitelistPluginConfig"
+              }
+            }
+          }
         }
       ]
     },
@@ -4988,6 +5021,14 @@
             "@graphql-codegen/urql-introspection": {
               "additionalProperties": false,
               "$ref": "#/definitions/UrqlIntrospectionConfig"
+            },
+            "operations-whitelist": {
+              "additionalProperties": false,
+              "$ref": "#/definitions/WhitelistPluginConfig"
+            },
+            "@graphql-codegen/operations-whitelist": {
+              "additionalProperties": false,
+              "$ref": "#/definitions/WhitelistPluginConfig"
             }
           }
         },
@@ -5273,6 +5314,14 @@
             {
               "const": "@graphql-codegen/urql-introspection",
               "description": "This plugin generates an introspection file for Schema Awareness feature of Urql Cache Exchange\n\nYou can read more about it in `urql` documentation: https://formidable.com/open-source/urql/docs/graphcache/schema-awareness/.\n\nUrql Introspection plugin accepts a TypeScript / JavaScript or a JSON file as an output _(`.ts, .tsx, .js, .jsx, .json`)_.\n\nBoth in TypeScript and JavaScript a default export is being used.\n\n> The output is based on the output you choose for the output file name.\n\nFor more details and documentation: https://graphql-code-generator.com/docs/plugins/urql-introspection\n\n=> Make sure to include \"@graphql-codegen/urql-introspection\" in your package.json file and install your dependencies.\n\n"
+            },
+            {
+              "const": "operations-whitelist",
+              "description": "\n\nFor more details and documentation: https://graphql-code-generator.com/docs/plugins/operations-whitelist\n\n=> Make sure to include \"@graphql-codegen/operations-whitelist\" in your package.json file and install your dependencies.\n\n"
+            },
+            {
+              "const": "@graphql-codegen/operations-whitelist",
+              "description": "\n\nFor more details and documentation: https://graphql-code-generator.com/docs/plugins/operations-whitelist\n\n=> Make sure to include \"@graphql-codegen/operations-whitelist\" in your package.json file and install your dependencies.\n\n"
             }
           ]
         },
